@@ -1,0 +1,115 @@
+#include <iostream>
+#include <string>
+#include <sstream>
+#include <iomanip>
+#include <cmath>
+
+using namespace std;
+
+string myAdd(string num1, string num2) {
+    long double n1 = stold(num1);
+    long double n2 = stold(num2);
+
+    long double result = n1 + n2;
+
+    stringstream ss;
+    ss << setprecision(15) << result; 
+    return ss.str();
+}
+
+string mySubtract(string num1, string num2) {
+ 
+    long double n1 = stold(num1);
+    long double n2 = stold(num2);
+
+    long double result = n1 - n2;
+
+    stringstream ss;
+    ss << setprecision(15) << result; 
+    return ss.str();
+}
+
+string myDivide(string num1, string num2) {
+ 
+    long double n1 = stold(num1);
+    long double n2 = stold(num2);
+
+    long double result = n1 / n2;
+    long double remainder = fmod(n1, n2);
+
+    stringstream ss;
+    ss << setprecision(15) << "Quotient: " << result << ", Remainder: " << remainder;
+    return ss.str();
+}
+
+string myMultiply(string num1, string num2) {
+  
+    long double n1 = stold(num1);
+    long double n2 = stold(num2);
+
+    long double result = n1 * n2;
+
+    stringstream ss;
+    ss << setprecision(15) << result; 
+    return ss.str();
+}
+
+string myModulus(string num1, string num2) {
+    
+    long long n1 = stoll(num1);
+    long long n2 = stoll(num2);
+
+    long long result = n1 % n2;
+
+    stringstream ss;
+    ss << result;
+    return ss.str();
+}
+
+int main() {
+    string num1, num2;
+    char operation;
+
+    cout << "Enter the first number: ";
+    cin >> num1;
+
+    cout << "Enter the second number: ";
+    cin >> num2;
+
+    cout << "Enter the operation (+, -, /, *, %): ";
+    cin >> operation;
+
+    string result;
+
+    switch (operation) {
+        case '+':
+            result = myAdd(num1, num2);
+            break;
+        case '-':
+            result = mySubtract(num1, num2);
+            break;
+        case '/':
+            result = myDivide(num1, num2);
+            break;
+        case '*':
+            result = myMultiply(num1, num2);
+            break;
+        case '%':
+            result = myModulus(num1, num2);
+            break;
+        default:
+            cout << "Invalid operation!";
+            return 0;
+    }
+
+    cout << "Result: " << result << endl;
+
+    string action;
+    cout << "Do you want to perform another operation? (y/n): ";
+    cin >> action;
+    if (action == "y" || action == "Y") {
+        main();
+    } else {
+        return 0;
+    }
+}
